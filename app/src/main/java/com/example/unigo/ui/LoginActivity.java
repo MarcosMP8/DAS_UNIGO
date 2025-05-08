@@ -30,15 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Comprobar si hay sesión ya iniciada
-        SharedPreferences prefs = getSharedPreferences("SessionPrefs", MODE_PRIVATE);
-        if (prefs.getBoolean("isLoggedIn", false)) {
-            Toast.makeText(this, "Sesión ya iniciada", Toast.LENGTH_SHORT).show();
-            // Aquí puedes redirigir a MapActivity u otra pantalla cuando esté lista
-            // startActivity(new Intent(this, MapActivity.class));
-            // finish();
-        }
-
         setContentView(R.layout.activity_login);
 
         etUsername = findViewById(R.id.etUsername);
@@ -82,14 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", login.getEmail());
                     editor.putString("phone", login.getPhone());
                     editor.putInt("userId", login.getId());
-                    editor.putString("photoUrl", login.getPhotoUrl());
                     editor.apply();
 
                     Toast.makeText(LoginActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
 
-                    // Aquí podrías redirigir más adelante:
-                    // startActivity(new Intent(LoginActivity.this, MapActivity.class));
-                    // finish();
+                    // Redirigir a TransporteActivity
+                    Intent intent = new Intent(LoginActivity.this, TransporteActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else {
                     showErrorDialog("Error de login", login.getMessage());

@@ -1,5 +1,8 @@
 package com.example.unigo.network;
 
+import com.example.unigo.network.LoginResponse;
+import com.example.unigo.network.RegisterResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -7,21 +10,19 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    // LOGIN
     @FormUrlEncoded
-    @POST("login.php")
+    @POST("login_unigo.php")
     Call<LoginResponse> loginUser(
-            @Field("username") String username,
+            @Field("nombre")   String nombre,
             @Field("password") String password
     );
 
-    // REGISTRO
     @FormUrlEncoded
-    @POST("register.php")
+    @POST("register_unigo.php")
     Call<RegisterResponse> registerUser(
-            @Field("username") String username,
-            @Field("email") String email,
+            @Field("nombre")   String nombre,
+            @Field("email")    String email,
             @Field("password") String password,
-            @Field("phone") String phone
+            @Field("telefono") String telefono
     );
 }
