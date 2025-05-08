@@ -22,22 +22,7 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/logo" />
 
-    <!-- Botón Acceder -->
-    <Button
-        android:id="@+id/btnAcceder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Acceder"
-        android:textAllCaps="false"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="100dp"
-        android:backgroundTint="#1E88E5"
-        android:textColor="#FFFFFF"
-        android:padding="12dp" />
-
-    <!-- Texto clicable para registrarse -->
+    <!-- Texto clicable para registrarse (en el fondo, debajo del botón) -->
     <TextView
         android:id="@+id/enlaceRegistro"
         android:layout_width="wrap_content"
@@ -46,9 +31,25 @@
         android:textColor="#2196F3"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_below="@id/btnAcceder"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="37dp"
         android:clickable="true"
         android:focusable="true" />
+
+    <!-- Botón Acceder (encima del enlace) -->
+    <Button
+        android:id="@+id/btnAcceder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acceder"
+        android:textAllCaps="false"
+        android:layout_above="@id/enlaceRegistro"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#1E88E5"
+        android:textColor="#FFFFFF"
+        android:padding="12dp" />
+
 </RelativeLayout>
