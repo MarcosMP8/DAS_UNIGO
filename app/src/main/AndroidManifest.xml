@@ -36,7 +36,7 @@
 
         <!-- Actividad después del login -->
         <activity
-            android:name=".ui.TransporteActivity"
+            android:name=".ui.MainMenuActivity"
             android:exported="false" />
 
     </application>

@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
 
                     // Redirigir a TransporteActivity
-                    Intent intent = new Intent(LoginActivity.this, TransporteActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(intent);
                     finish();
 
