@@ -1,3 +1,4 @@
+// LoginActivity.java
 package com.example.unigo.ui;
 
 import android.content.Intent;
@@ -6,7 +7,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,24 +21,28 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private Button btnVolverLogin, btnLogin;
     private EditText etUsername, etPassword;
-    private Button btnLogin;
     private TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        btnLogin   = findViewById(R.id.btnLogin);
-        tvRegister = findViewById(R.id.tvRegister);
+        btnVolverLogin = findViewById(R.id.btnVolverLogin);
+        etUsername     = findViewById(R.id.etUsername);
+        etPassword     = findViewById(R.id.etPassword);
+        btnLogin       = findViewById(R.id.btnLogin);
+        tvRegister     = findViewById(R.id.tvRegister);
+
+        // Botón Volver al MainActivity
+        btnVolverLogin.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        });
 
         btnLogin.setOnClickListener(v -> loginUser());
-
         tvRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             finish();
@@ -48,40 +52,32 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-
         if (username.isEmpty() || password.isEmpty()) {
             showErrorDialog("Campos vacíos", "Introduce usuario y contraseña.");
             return;
         }
 
-        ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
-        Call<LoginResponse> call = apiService.loginUser(username, password);
-        call.enqueue(new Callback<LoginResponse>() {
+        ApiService api = RetrofitClient.getInstance().create(ApiService.class);
+        api.loginUser(username, password).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (!response.isSuccessful() || response.body() == null) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> resp) {
+                if (!resp.isSuccessful() || resp.body() == null) {
                     showErrorDialog("Error", "No se pudo conectar al servidor.");
                     return;
                 }
-
-                LoginResponse login = response.body();
+                LoginResponse login = resp.body();
                 if (login.isSuccess()) {
-                    // Guardar sesión
-                    SharedPreferences.Editor editor = getSharedPreferences("SessionPrefs", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor =
+                            getSharedPreferences("SessionPrefs", MODE_PRIVATE).edit();
                     editor.putBoolean("isLoggedIn", true);
-                    editor.putString("name", username);
-                    editor.putString("email", login.getEmail());
-                    editor.putString("phone", login.getPhone());
                     editor.putInt("userId", login.getId());
+                    editor.putString("name", login.getNombre());
+                    editor.putString("email", login.getEmail());
+                    editor.putString("phone", login.getTelefono());
                     editor.apply();
 
-                    Toast.makeText(LoginActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-
-                    // Redirigir a TransporteActivity
-                    Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     finish();
-
                 } else {
                     showErrorDialog("Error de login", login.getMessage());
                 }
@@ -94,10 +90,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void showErrorDialog(String title, String message) {
+    private void showErrorDialog(String title, String msg) {
         new AlertDialog.Builder(this)
                 .setTitle(title)
-                .setMessage(message)
+                .setMessage(msg)
                 .setPositiveButton("Aceptar", null)
                 .show();
     }

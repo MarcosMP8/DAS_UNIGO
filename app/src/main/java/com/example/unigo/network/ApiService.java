@@ -25,4 +25,14 @@ public interface ApiService {
             @Field("password") String password,
             @Field("telefono") String telefono
     );
+
+    @FormUrlEncoded
+    @POST("update_profile_unigo.php")
+    Call<GenericResponse> updateProfile(
+            @Field("id")       int    userId,
+            @Field("nombre")   String nombre,
+            @Field("email")    String email,
+            @Field("telefono") String telefono
+    );
+
 }

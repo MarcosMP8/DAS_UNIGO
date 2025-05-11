@@ -1,42 +1,57 @@
+// MainMenuActivity.java
 package com.example.unigo.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.unigo.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class MainMenuActivity extends AppCompatActivity {
+
+    private MaterialCardView cardUniversity;
+    private MaterialCardView cardBike;
+    private MaterialCardView cardTram;
+    private MaterialCardView cardBus;
+    private MaterialCardView cardWalk;
+    private MaterialCardView cardProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        // Universidad (quizá volvamos al dashboard o muestre info del campus)
-//        findViewById(R.id.card_university).setOnClickListener(v -> {
-            // Ejemplo: volver al Home
-//            finish();
-//        });
+        cardUniversity = findViewById(R.id.card_university);
+        cardBike       = findViewById(R.id.card_bike);
+        cardTram       = findViewById(R.id.card_tram);
+        cardBus        = findViewById(R.id.card_bus);
+        cardWalk       = findViewById(R.id.card_walk);
+        cardProfile    = findViewById(R.id.card_profile);
 
-//        findViewById(R.id.card_walk).setOnClickListener(v ->
-//                startActivity(new Intent(this, WalkActivity.class))
-//        );
+        cardUniversity.setOnClickListener(v ->
+                Toast.makeText(this, "Universidad seleccionada", Toast.LENGTH_SHORT).show()
+        );
 
-//        findViewById(R.id.card_bike).setOnClickListener(v ->
-//                startActivity(new Intent(this, BikeActivity.class))
-//        );
+        cardBike.setOnClickListener(v ->
+                Toast.makeText(this, "Bicicleta seleccionada", Toast.LENGTH_SHORT).show()
+        );
 
-//        findViewById(R.id.card_tram).setOnClickListener(v ->
-//                startActivity(new Intent(this, TramActivity.class))
-//        );
+        cardTram.setOnClickListener(v ->
+                Toast.makeText(this, "Tranvía seleccionado", Toast.LENGTH_SHORT).show()
+        );
 
-//        findViewById(R.id.card_bus).setOnClickListener(v ->
-//                startActivity(new Intent(this, BusActivity.class))
-//        );
+        cardBus.setOnClickListener(v ->
+                Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show()
+        );
 
-        // Perfil
-        findViewById(R.id.card_profile).setOnClickListener(v ->
+        cardWalk.setOnClickListener(v ->
+                Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show()
+        );
+
+        cardProfile.setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class))
         );
     }

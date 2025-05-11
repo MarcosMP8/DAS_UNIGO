@@ -1,34 +1,30 @@
 package com.example.unigo.network;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponse {
+    @SerializedName("success")
     private boolean success;
+
+    @SerializedName("message")
     private String message;
-    private String email;
-    private String phone;
+
+    @SerializedName("id")
     private int id;
-    private String photoUrl;
 
-    public boolean isSuccess() {
-        return success;
-    }
+    @SerializedName("nombre")
+    private String nombre;
 
-    public String getMessage() {
-        return message;
-    }
+    @SerializedName("email")
+    private String email;
 
-    public String getEmail() {
-        return email;
-    }
+    @SerializedName("telefono")
+    private String telefono;
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
+    public boolean isSuccess()       { return success; }
+    public String getMessage()       { return message; }
+    public int getId()               { return id; }
+    public String getNombre()        { return nombre; }
+    public String getEmail()         { return email; }
+    public String getTelefono()      { return telefono; }
 }
