@@ -35,8 +35,9 @@ public class MainMenuActivity extends AppCompatActivity {
 //                startActivity(new Intent(this, BusActivity.class))
 //        );
 
-//        findViewById(R.id.card_scooter).setOnClickListener(v ->
-  //              startActivity(new Intent(this, ScooterActivity.class))
-    //    );
+        // Perfil
+        findViewById(R.id.card_profile).setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileActivity.class))
+        );
     }
 }

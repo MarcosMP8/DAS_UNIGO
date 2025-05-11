@@ -38,6 +38,9 @@
         <activity
             android:name=".ui.MainMenuActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
 
     </application>
 

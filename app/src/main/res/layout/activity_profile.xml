@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="24dp">
+
+    <!-- Toolbar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/btnVolverToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:background="@android:color/transparent"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Volver" />
+
+        <TextView
+            android:id="@+id/tvTituloPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryBlue"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <!-- Foto + Nombre/Apellidos/Correo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="24dp">
+
+        <ImageView
+            android:id="@+id/ivPerfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_profile"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_border"/>
+
+        <!-- Vista normal -->
+        <LinearLayout
+            android:id="@+id/layoutVista"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:id="@+id/tvNombrePerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tu nombre"
+                android:textSize="18sp"
+                android:textColor="@color/primaryBlue"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvApellidoPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tus apellidos"
+                android:textSize="18sp"
+                android:textColor="@color/primaryBlue"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvCorreoPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ejemplo@gmail.com"
+                android:textSize="16sp"
+                android:textColor="@color/primaryBlue"/>
+        </LinearLayout>
+
+        <!-- Vista edición (oculta al inicio) -->
+        <LinearLayout
+            android:id="@+id/layoutEditar"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <EditText
+                android:id="@+id/etNombrePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nuevo nombre"
+                android:textColor="@color/primaryBlue"
+                android:backgroundTint="@color/primaryBlue"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/etApellidoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nuevos apellidos"
+                android:textColor="@color/primaryBlue"
+                android:backgroundTint="@color/primaryBlue"
+                android:layout_marginBottom="12dp"/>
+
+            <Button
+                android:id="@+id/btnGuardarPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar cambios"
+                android:background="@drawable/button_selector"
+                android:textColor="@color/primaryBlue"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Botón editar -->
+        <ImageButton
+            android:id="@+id/btnEditarNombre"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_edit"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!-- Spinner Género -->
+    <Spinner
+        android:id="@+id/spinnerGenero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/generos"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Botones -->
+    <Button
+        android:id="@+id/btnVolverPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="Volver"
+        android:textColor="@color/primaryBlue"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="Cerrar sesión"
+        android:textColor="@color/primaryBlue"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>
