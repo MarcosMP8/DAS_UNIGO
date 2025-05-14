@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Fondo de estudiantes como imagen ampliada (zoom) -->
+    <ImageView
+        android:id="@+id/fondoEstudiantes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_estudiantes"
+        android:adjustViewBounds="true" />
+
+    <!-- Logo UNIGO más grande -->
+    <ImageView
+        android:id="@+id/logoUnigo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo" />
+
+    <!-- Texto clicable para registrarse (en el fondo, debajo del botón) -->
+    <TextView
+        android:id="@+id/enlaceRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿No tienes cuenta? Regístrate"
+        android:textColor="#2196F3"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Botón Acceder (encima del enlace) -->
+    <Button
+        android:id="@+id/btnAcceder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acceder"
+        android:textAllCaps="false"
+        android:layout_above="@id/enlaceRegistro"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#1E88E5"
+        android:textColor="#FFFFFF"
+        android:padding="12dp" />
+
+</RelativeLayout>
