@@ -9,74 +9,57 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.bumptech.glide.Glide;
 import com.example.unigo.R;
 import com.example.unigo.network.ApiService;
 import com.example.unigo.network.GenericResponse;
 import com.example.unigo.network.RetrofitClient;
-
+import com.google.android.material.textfield.TextInputEditText;
 import java.io.ByteArrayOutputStream;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
-    private static final String TAG        = "ProfileActivity";
-    private static final String PREFS      = "SessionPrefs";
-    private static final String KEY_PHOTO  = "fotoUrl";
+    private static final String TAG       = "ProfileActivity";
+    private static final String PREFS     = "SessionPrefs";
+    private static final String KEY_PHOTO = "fotoUrl";
 
     private ImageView imgUserIcon;
     private TextView  tvName, tvPhone, tvEmail;
-    private Button    btnBack;
+    private Button    btnBack, btnLogout;
+    private View      cardProfileInfo;
 
     private String username;
+    private int    userId;
 
-    // Launcher para recibir el thumbnail de la cámara (emulador)
     private final ActivityResultLauncher<Intent> takePictureLauncher =
             registerForActivityResult(
-                    new ActivityResultContracts.StartActivityForResult(),
-                    result -> {
-                        Log.d(TAG, "onActivityResult: resultCode=" + result.getResultCode());
-                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                            Bitmap thumbnail = result.getData().getExtras().getParcelable("data");
-                            if (thumbnail != null) {
-                                Log.d(TAG, "received camera thumbnail, size=" +
-                                        thumbnail.getWidth() + "x" + thumbnail.getHeight());
-                                imgUserIcon.setImageBitmap(thumbnail);
-                                uploadImageToServer(thumbnail);
-                            } else {
-                                Log.e(TAG, "onActivityResult: thumbnail is null");
-                                Toast.makeText(this, "No se obtuvo imagen", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.w(TAG, "onActivityResult: canceled or no data");
+                    new ActivityResultContracts.StartActivityForResult(), result -> {
+                        if (result.getResultCode() == RESULT_OK && result.getData()!=null) {
+                            Bitmap thumb = result.getData().getExtras().getParcelable("data");
+                            imgUserIcon.setImageBitmap(thumb);
+                            uploadImageToServer(thumb);
                         }
                     }
             );
 
-    // Launcher para pedir permiso de cámara
     private final ActivityResultLauncher<String> permissionLauncher =
             registerForActivityResult(
-                    new ActivityResultContracts.RequestPermission(),
-                    granted -> {
-                        Log.d(TAG, "Camera permission granted? " + granted);
-                        if (granted) {
-                            openCamera();
-                        } else {
-                            Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
-                        }
+                    new ActivityResultContracts.RequestPermission(), granted -> {
+                        if (granted) openCamera();
+                        else Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
                     }
             );
 
@@ -86,118 +69,144 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate");
 
-        imgUserIcon = findViewById(R.id.imgUserIcon);
-        tvName      = findViewById(R.id.tvName);
-        tvPhone     = findViewById(R.id.tvPhone);
-        tvEmail     = findViewById(R.id.tvEmail);
-        btnBack     = findViewById(R.id.btnBack);
+        imgUserIcon      = findViewById(R.id.imgUserIcon);
+        tvName           = findViewById(R.id.tvName);
+        tvPhone          = findViewById(R.id.tvPhone);
+        tvEmail          = findViewById(R.id.tvEmail);
+        btnBack          = findViewById(R.id.btnBack);
+        btnLogout        = findViewById(R.id.btnLogout);
+        cardProfileInfo  = findViewById(R.id.cardProfileInfo);
 
-        // Cargar datos de SharedPreferences
         SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
         username = prefs.getString("name", "Usuario");
-        String phone = prefs.getString("phone", "");
-        String email = prefs.getString("email", "");
-        String photoUrl = prefs.getString(KEY_PHOTO, "");
-
-        Log.d(TAG, "loadProfile(): name=" + username +
-                ", phone=" + phone + ", email=" + email +
-                ", photoUrl=" + photoUrl);
+        userId   = prefs.getInt("userId", -1);
+        String phone   = prefs.getString("phone", "");
+        String email   = prefs.getString("email", "");
+        String photoUrl= prefs.getString(KEY_PHOTO, "");
 
         tvName.setText(username);
         tvPhone.setText("Teléfono: " + phone);
-        tvEmail.setText("Email: " + email);
+        tvEmail.setText("Email: "   + email);
 
         if (!photoUrl.isEmpty()) {
-            Glide.with(this)
-                    .load(photoUrl)
-                    .placeholder(R.drawable.usuario)
-                    .into(imgUserIcon);
-        } else {
-            imgUserIcon.setImageResource(R.drawable.usuario);
+            Glide.with(this).load(photoUrl)
+                    .placeholder(R.drawable.usuario).into(imgUserIcon);
         }
 
         imgUserIcon.setOnClickListener(v -> {
-            Log.d(TAG, "imgUserIcon clicked");
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.d(TAG, "Camera permission already granted");
                 openCamera();
             } else {
-                Log.d(TAG, "Requesting camera permission");
                 permissionLauncher.launch(Manifest.permission.CAMERA);
             }
         });
 
-        btnBack.setOnClickListener(v -> {
-            Log.d(TAG, "btnBack clicked, finishing activity");
-            finish();
+        // Al pulsar el CardView abrimos el diálogo de edición
+        cardProfileInfo.setOnClickListener(v -> showEditDialog());
+
+        btnBack.setOnClickListener(v -> finish());
+        btnLogout.setOnClickListener(v -> {
+            getSharedPreferences(PREFS, MODE_PRIVATE).edit().clear().apply();
+            Intent i = new Intent(this, LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        });
+    }
+
+    private void showEditDialog() {
+        // Inflar layout
+        View dialogView = LayoutInflater.from(this)
+                .inflate(R.layout.dialog_edit_profile, null);
+        TextInputEditText etName  = dialogView.findViewById(R.id.etDialogName);
+        TextInputEditText etPhone = dialogView.findViewById(R.id.etDialogPhone);
+        TextInputEditText etEmail = dialogView.findViewById(R.id.etDialogEmail);
+
+        // Prefill con valores actuales
+        etName.setText(tvName.getText().toString());
+        etPhone.setText(tvPhone.getText().toString().replace("Teléfono: ",""));
+        etEmail.setText(tvEmail.getText().toString().replace("Email: ",""));
+
+        new AlertDialog.Builder(this)
+                .setTitle("Editar perfil")
+                .setView(dialogView)
+                .setPositiveButton("Guardar", (d, which) -> {
+                    String newName  = etName.getText().toString().trim();
+                    String newPhone = etPhone.getText().toString().trim();
+                    String newEmail = etEmail.getText().toString().trim();
+                    if (newName.isEmpty() || newEmail.isEmpty()) {
+                        Toast.makeText(this,
+                                "El nombre y email son obligatorios", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    updateProfileOnServer(newName,newPhone,newEmail);
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void updateProfileOnServer(String name, String phone, String email) {
+        ApiService api = RetrofitClient.getInstance().create(ApiService.class);
+        Call<GenericResponse> call = api.updateProfile(userId, name, email, phone);
+        call.enqueue(new Callback<GenericResponse>() {
+            @Override
+            public void onResponse(Call<GenericResponse> call,
+                                   Response<GenericResponse> resp) {
+                if (resp.isSuccessful() && resp.body()!=null&&resp.body().isSuccess()) {
+                    // Guardar en prefs
+                    SharedPreferences.Editor e = getSharedPreferences(PREFS,MODE_PRIVATE).edit();
+                    e.putString("name",name);
+                    e.putString("phone",phone);
+                    e.putString("email",email);
+                    e.apply();
+                    // Actualizar UI
+                    tvName.setText(name);
+                    tvPhone.setText("Teléfono: "+phone);
+                    tvEmail.setText("Email: "+email);
+                    Toast.makeText(ProfileActivity.this,
+                            "Perfil actualizado", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ProfileActivity.this,
+                            "Error al actualizar: "+
+                                    (resp.body()!=null?resp.body().getMessage():"Servidor"),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<GenericResponse> call, Throwable t) {
+                Toast.makeText(ProfileActivity.this,
+                        "Fallo de red: "+t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
         });
     }
 
     private void openCamera() {
-        Log.d(TAG, "openCamera()");
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        takePictureLauncher.launch(intent);
+        takePictureLauncher.launch(
+                new Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        );
     }
 
     private void uploadImageToServer(Bitmap bitmap) {
-        Log.d(TAG, "uploadImageToServer()");
-        // Convertir bitmap a Base64
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
-        String base64Image = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-        Log.d(TAG, "Base64 length=" + base64Image.length());
-
-        // Llamada Retrofit
+        bitmap.compress(Bitmap.CompressFormat.JPEG,90,baos);
+        String b64 = Base64.encodeToString(baos.toByteArray(),Base64.DEFAULT);
         ApiService api = RetrofitClient.getInstance().create(ApiService.class);
-        Call<GenericResponse> call = api.uploadProfileImage(username, base64Image);
-        Log.d(TAG, "Enqueue uploadProfileImage call");
-        call.enqueue(new Callback<GenericResponse>() {
-            @Override
-            public void onResponse(Call<GenericResponse> call,
-                                   Response<GenericResponse> response) {
-                Log.d(TAG, "onResponse: code=" + response.code());
-                if (response.isSuccessful() && response.body() != null) {
-                    GenericResponse body = response.body();
-                    Log.d(TAG, "Response body: success=" + body.isSuccess() +
-                            " message=" + body.getMessage() +
-                            " url=" + body.getUrl());
-                    if (body.isSuccess()) {
-                        String newUrl = body.getUrl();
-                        getSharedPreferences(PREFS, MODE_PRIVATE)
-                                .edit()
-                                .putString(KEY_PHOTO, newUrl)
-                                .apply();
-                        Toast.makeText(ProfileActivity.this,
-                                "Foto subida correctamente", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.e(TAG, "Server error: " + body.getMessage());
-                        Toast.makeText(ProfileActivity.this,
-                                "Error servidor: " + body.getMessage(), Toast.LENGTH_LONG).show();
+        api.uploadProfileImage(username,b64)
+                .enqueue(new Callback<GenericResponse>() {
+                    @Override
+                    public void onResponse(Call<GenericResponse> c, Response<GenericResponse> r) {
+                        if (r.isSuccessful() && r.body()!=null&&r.body().isSuccess()) {
+                            String url= r.body().getUrl();
+                            getSharedPreferences(PREFS,MODE_PRIVATE).edit()
+                                    .putString(KEY_PHOTO,url).apply();
+                            Glide.with(ProfileActivity.this).load(url)
+                                    .into(imgUserIcon);
+                            Toast.makeText(ProfileActivity.this,
+                                    "Foto actualizada",Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } else {
-                    try {
-                        String err = response.errorBody() != null
-                                ? response.errorBody().string()
-                                : "nulo";
-                        Log.e(TAG, "HTTP error: " + response.code() +
-                                " body=" + err);
-                    } catch (Exception e) {
-                        Log.e(TAG, "Error leyendo errorBody", e);
-                    }
-                    Toast.makeText(ProfileActivity.this,
-                            "Error servidor HTTP " + response.code(),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage(), t);
-                Toast.makeText(ProfileActivity.this,
-                        "Fallo de red: " + t.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
+                    @Override public void onFailure(Call<GenericResponse> c, Throwable t){}
+                });
     }
 }

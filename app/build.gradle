@@ -41,6 +41,8 @@ dependencies {
     // Para mostrar logs en red (opcional pero útil)
     implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
 
+    implementation 'androidx.cardview:cardview:1.0.0'
+
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
