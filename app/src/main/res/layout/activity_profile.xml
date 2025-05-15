@@ -1,178 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Guideline para separar de la cámara frontal -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="40dp" />
 
-        <!-- Toolbar -->
-        <RelativeLayout
+    <!-- Título centrado -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/guidelineTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Foto de perfil -->
+    <ImageView
+        android:id="@+id/imgUserIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/usuario"
+        android:contentDescription="Icono de usuario"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Nombre -->
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imgUserIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Card con teléfono y email -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardProfileInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
-
-            <ImageButton
-                android:id="@+id/btnVolverToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"
-                android:background="@android:color/transparent"
-                android:layout_alignParentStart="true"
-                android:contentDescription="Volver" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/tvTituloPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perfil"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryBlue"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-
-        <!-- Foto + Datos -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingTop="24dp">
-
-            <ImageView
-                android:id="@+id/ivPerfil"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_profile"
-                android:scaleType="centerCrop"
-                android:background="@drawable/circle_border"/>
-
-            <!-- Vista normal -->
-            <LinearLayout
-                android:id="@+id/layoutVista"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="20dp">
-
-                <TextView
-                    android:id="@+id/tvNombrePerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tu nombre"
-                    android:textSize="18sp"
-                    android:textColor="@color/primaryBlue"
-                    android:paddingBottom="4dp"/>
-
-                <TextView
-                    android:id="@+id/tvCorreoPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ejemplo@gmail.com"
-                    android:textSize="16sp"
-                    android:textColor="@color/primaryBlue"
-                    android:paddingBottom="4dp"/>
-
-                <TextView
-                    android:id="@+id/tvTelefonoPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="600123456"
-                    android:textSize="16sp"
-                    android:textColor="@color/primaryBlue"/>
-            </LinearLayout>
-
-            <!-- Botón editar -->
-            <ImageButton
-                android:id="@+id/btnEditarNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-
-        <!-- Vista edición (oculta al inicio) -->
-        <LinearLayout
-            android:id="@+id/layoutEditar"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-            <EditText
-                android:id="@+id/etNombrePerfil"
+                android:id="@+id/tvPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nuevo nombre"
-                android:inputType="textPersonName"
-                android:backgroundTint="@color/primaryBlue"
-                android:layout_marginBottom="8dp"/>
-
-            <EditText
-                android:id="@+id/etCorreoPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nuevo correo"
-                android:inputType="textEmailAddress"
-                android:backgroundTint="@color/primaryBlue"
-                android:layout_marginBottom="8dp"/>
-
-            <EditText
-                android:id="@+id/etTelefonoPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nuevo teléfono"
-                android:inputType="phone"
-                android:backgroundTint="@color/primaryBlue"
+                android:text=""
+                android:textSize="18sp"
                 android:layout_marginBottom="12dp"/>
 
-            <Button
-                android:id="@+id/btnGuardarPerfil"
+            <TextView
+                android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Guardar cambios"
-                android:background="@drawable/button_selector"
-                android:textColor="@color/primaryBlue"
-                android:textStyle="bold"/>
+                android:text=""
+                android:textSize="18sp"/>
+
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <!-- Spinner Género -->
-        <Spinner
-            android:id="@+id/spinnerGenero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/generos"
-            android:layout_marginTop="16dp"/>
+    <!-- Botón Cerrar sesión -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cardProfileInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Botones -->
-        <Button
-            android:id="@+id/btnVolverPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_selector"
-            android:text="Volver"
-            android:textColor="@color/primaryBlue"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"/>
+    <!-- Botón Volver abajo centrado -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_selector"
-            android:text="Cerrar sesión"
-            android:textColor="@color/primaryBlue"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"/>
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

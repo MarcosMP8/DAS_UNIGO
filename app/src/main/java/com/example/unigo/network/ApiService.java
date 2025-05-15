@@ -1,15 +1,13 @@
 package com.example.unigo.network;
 
-import com.example.unigo.network.LoginResponse;
-import com.example.unigo.network.RegisterResponse;
-
 import retrofit2.Call;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 
 public interface ApiService {
 
+    // Login
     @FormUrlEncoded
     @POST("login_unigo.php")
     Call<LoginResponse> loginUser(
@@ -17,6 +15,7 @@ public interface ApiService {
             @Field("password") String password
     );
 
+    // Registro
     @FormUrlEncoded
     @POST("register_unigo.php")
     Call<RegisterResponse> registerUser(
@@ -26,6 +25,7 @@ public interface ApiService {
             @Field("telefono") String telefono
     );
 
+    // Actualizar perfil (nombre, email, teléfono)
     @FormUrlEncoded
     @POST("update_profile_unigo.php")
     Call<GenericResponse> updateProfile(
@@ -35,4 +35,11 @@ public interface ApiService {
             @Field("telefono") String telefono
     );
 
+    // Subir foto de perfil
+    @FormUrlEncoded
+    @POST("update_profile_unigo.php")
+    Call<GenericResponse> uploadProfileImage(
+            @Field("name")   String name,
+            @Field("imagen") String imagenBase64
+    );
 }
