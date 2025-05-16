@@ -1,4 +1,3 @@
-// LoginActivity.java
 package com.example.unigo.ui;
 
 import android.content.Intent;

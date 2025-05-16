@@ -1,4 +1,3 @@
-// MainMenuActivity.java
 package com.example.unigo.ui;
 
 import android.content.Intent;
@@ -47,9 +46,10 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show()
         );
 
-        cardWalk.setOnClickListener(v ->
-                Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show()
-        );
+        cardWalk.setOnClickListener(v -> {
+            Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainMenuActivity.this, WalkActivity.class));
+        });
 
         cardProfile.setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class))
