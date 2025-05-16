@@ -272,7 +272,8 @@ public class WalkActivity extends AppCompatActivity {
                 tvInfo.invalidate();
                 tvInfo.requestLayout();
 
-                Log.d("WalkActivity", "tvInfo actualizado a: [" + info + "]");});
+                //Log.d("WalkActivity", "tvInfo actualizado a: [" + info + "]");
+            });
         }).start();
     }
 
