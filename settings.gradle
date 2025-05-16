@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //OSMBonusPack (routing)
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
