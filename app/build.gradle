@@ -34,7 +34,11 @@ android {
 }
 
 dependencies {
-
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    // GSON (si no lo tienes ya)
+    implementation 'com.google.code.gson:gson:2.8.6'
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // Convertidor JSON con Gson
@@ -47,6 +51,8 @@ dependencies {
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     // PREFERENCES & LOCATION
     implementation "androidx.preference:preference:1.2.0"
