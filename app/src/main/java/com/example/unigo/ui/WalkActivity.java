@@ -9,6 +9,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,7 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WalkActivity extends AppCompatActivity {
     private static final int REQUEST_PERMS    = 123;
@@ -50,6 +53,7 @@ public class WalkActivity extends AppCompatActivity {
     private IMapController mapController;
     private FusedLocationProviderClient locClient;
     private ImageButton btnBack;
+    private TextView tvInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,9 @@ public class WalkActivity extends AppCompatActivity {
 
         // Encuentra el botón de volver
         btnBack = findViewById(R.id.btn_back);
+        tvInfo  = findViewById(R.id.tv_info);
+
+        tvInfo.setVisibility(View.GONE);
 
         // Comprueba en el log si la referencia es nula
         if (btnBack == null) {
@@ -222,18 +229,50 @@ public class WalkActivity extends AppCompatActivity {
 
     private void drawRoute(GeoPoint start, GeoPoint end) {
         OSRMRoadManager roadManager = new OSRMRoadManager(this, "UNIGO");
+        roadManager.setMean(OSRMRoadManager.MEAN_BY_FOOT);
+
         ArrayList<GeoPoint> waypoints = new ArrayList<>();
         waypoints.add(start);
         waypoints.add(end);
 
         new Thread(() -> {
             Road road = roadManager.getRoad(waypoints);
-            Polyline routeOverlay = RoadManager.buildRoadOverlay(road);
+
+            Log.d("WalkActivity", String.format(
+                    Locale.getDefault(),
+                    "Road computation: status=%d, lengthMeters=%.2f",
+                    road.mStatus,
+                    road.mLength
+            ));
 
             runOnUiThread(() -> {
+                if (road.mStatus != Road.STATUS_OK) {
+                    Log.e("WalkActivity", "Error al calcular ruta, status=" + road.mStatus);
+                    return;
+                }
+
+                // 1) Dibujamos la ruta
+                Polyline routeOverlay = RoadManager.buildRoadOverlay(road);
                 map.getOverlays().add(routeOverlay);
                 map.invalidate();
-            });
+
+                // 2) Calculamos distancia y tiempo
+                double distanciaKm = road.mLength;
+                int minutos = (int) Math.round((distanciaKm / 5.0) * 60);
+
+                // 3) ACTUALIZAMOS EL TEXTVIEW
+                String info = String.format(
+                        Locale.getDefault(),
+                        "Dist: %.2f km\nTiempo: %d min",
+                        distanciaKm, minutos
+                );
+                tvInfo.setText(info);
+                tvInfo.setVisibility(View.VISIBLE);
+                tvInfo.bringToFront();
+                tvInfo.invalidate();
+                tvInfo.requestLayout();
+
+                Log.d("WalkActivity", "tvInfo actualizado a: [" + info + "]");});
         }).start();
     }
 
