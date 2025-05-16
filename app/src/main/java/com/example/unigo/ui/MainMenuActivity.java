@@ -51,8 +51,9 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(new Intent(MainMenuActivity.this, WalkActivity.class));
         });
 
-        cardProfile.setOnClickListener(v ->
-                startActivity(new Intent(this, ProfileActivity.class))
-        );
+        cardProfile.setOnClickListener(v -> {
+            Toast.makeText(this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ProfileActivity.class));
+        });
     }
 }
