@@ -22,7 +22,6 @@ public class UniversityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_university);
 
-        // 1. Configurar Spinner con layouts multilinea
         Spinner spinnerCarreras = findViewById(R.id.spinnerCarreras);
         String[] carreras = getResources().getStringArray(R.array.alava_carreras);
 
@@ -36,7 +35,6 @@ public class UniversityActivity extends AppCompatActivity {
         );
         spinnerCarreras.setAdapter(adapter);
 
-        // 2. Manejar selección de carrera
         spinnerCarreras.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             boolean firstCall = true;
             @Override
@@ -56,7 +54,7 @@ public class UniversityActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        // 3. Enlace a la web de la UPV/EHU usando TextView clicable
+        //Enlace a la web de la UPV/EHU
         TextView tvVisitUniversity = findViewById(R.id.tvVisitUniversity);
         tvVisitUniversity.setOnClickListener(v -> {
             Intent intent = new Intent(
@@ -66,7 +64,6 @@ public class UniversityActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 4. Botón “Volver” que abre MainMenuActivity
         Button btnVolver = findViewById(R.id.btnVolverUniversity);
         btnVolver.setOnClickListener(v -> {
             Intent backIntent = new Intent(
