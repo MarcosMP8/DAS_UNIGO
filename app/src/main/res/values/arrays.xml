@@ -6,4 +6,35 @@
         <item>Otro</item>
         <item>Prefiero no decirlo</item>
     </string-array>
+
+    <string-array name="alava_carreras">
+        <item>Doble Grado en ADE + Ingeniería Informática de Gestión y Sistemas de Información (Facultad de Economía y Empresa)</item>
+        <item>Doble Grado en Farmacia + Nutrición Humana y Dietética (Facultad de Farmacia)</item>
+        <item>Doble Grado en Ingeniería Mecánica + ADE (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Doble Grado en Ingeniería Mecánica + Ingeniería Electrónica Industrial y Automática (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Administración y Dirección de Empresas (ADE) (Facultad de Economía y Empresa. Sección Álava)</item>
+        <item>Grado en Ciencia y Tecnología de los Alimentos (Facultad de Farmacia)</item>
+        <item>Grado en Ciencias Ambientales (Plan nuevo) (Facultad de Farmacia)</item>
+        <item>Grado en Ciencias de la Actividad Física y el Deporte (Facultad de Educación y Deporte)</item>
+        <item>Grado en Educación Infantil (Facultad de Educación y Deporte)</item>
+        <item>Grado en Educación Primaria (Facultad de Educación y Deporte)</item>
+        <item>Grado en Educación Primaria (Trilingüe) (Facultad de Educación y Deporte)</item>
+        <item>Grado en Enfermería (Escuela Universitaria de Enfermería de Vitoria-Gasteiz)</item>
+        <item>Grado en Estudios Ingleses (Facultad de Letras)</item>
+        <item>Grado en Estudios Vascos (Facultad de Letras)</item>
+        <item>Grado en Farmacia (Facultad de Farmacia)</item>
+        <item>Grado en Filología (Facultad de Letras)</item>
+        <item>Grado en Geografía y Ordenación del Territorio (Facultad de Letras)</item>
+        <item>Grado en Historia (Facultad de Letras)</item>
+        <item>Grado en Historia del Arte (Facultad de Letras)</item>
+        <item>Grado en Ingeniería Electrónica Industrial y Automática (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Ingeniería Informática de Gestión y Sistemas de Información (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Ingeniería Mecánica (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Ingeniería Química Industrial (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Ingeniería en Automoción – DUAL (Escuela de Ingeniería de Vitoria-Gasteiz)</item>
+        <item>Grado en Medicina (Unidad Docente de la F. de Medicina y Enfermería en Vitoria-Gasteiz)</item>
+        <item>Grado en Nutrición Humana y Dietética (Facultad de Farmacia)</item>
+        <item>Grado en Trabajo Social (Facultad de Relaciones Laborales y Trabajo Social. Sección Álava)</item>
+        <item>Grado en Traducción e Interpretación (Facultad de Letras)</item>
+    </string-array>
 </resources>

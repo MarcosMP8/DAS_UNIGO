@@ -30,9 +30,10 @@ public class MainMenuActivity extends AppCompatActivity {
         cardWalk       = findViewById(R.id.card_walk);
         cardProfile    = findViewById(R.id.card_profile);
 
-        cardUniversity.setOnClickListener(v ->
-                Toast.makeText(this, "Universidad seleccionada", Toast.LENGTH_SHORT).show()
-        );
+        cardUniversity.setOnClickListener(v -> {
+            Toast.makeText(this, "Universidad seleccionada", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, UniversityActivity.class));
+        });
 
         cardBike.setOnClickListener(v ->
                 Toast.makeText(this, "Bicicleta seleccionada", Toast.LENGTH_SHORT).show()
@@ -42,9 +43,10 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(this, "Tranvía seleccionado", Toast.LENGTH_SHORT).show()
         );
 
-        cardBus.setOnClickListener(v ->
-                Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show()
-        );
+        cardBus.setOnClickListener(v -> {
+            Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainMenuActivity.this, BusActivity.class));
+        });
 
         cardWalk.setOnClickListener(v -> {
             Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show();

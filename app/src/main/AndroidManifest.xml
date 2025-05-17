@@ -58,6 +58,16 @@
             android:name=".ui.WalkActivity"
             android:exported="false" />
 
+        <!-- Actividad de A Bus -->
+        <activity
+            android:name=".ui.BusActivity"
+            android:exported="false" />
+
+        <!-- Actividad de Universidad -->
+        <activity
+            android:name=".ui.UniversityActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
