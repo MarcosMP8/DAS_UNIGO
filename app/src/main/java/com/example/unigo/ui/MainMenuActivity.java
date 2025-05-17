@@ -42,9 +42,10 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(this, "Tranvía seleccionado", Toast.LENGTH_SHORT).show()
         );
 
-        cardBus.setOnClickListener(v ->
-                Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show()
-        );
+        cardBus.setOnClickListener(v -> {
+            Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainMenuActivity.this, BusActivity.class));
+        });
 
         cardWalk.setOnClickListener(v -> {
             Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show();
