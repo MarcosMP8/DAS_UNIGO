@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@color/white">
+    android:background="?attr/colorSurface">
 
-    <!-- Scroll para pantallas pequeñas -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -41,7 +40,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Usuario">
+                android:hint="@string/user">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUsername"
@@ -54,7 +53,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña"
+                android:hint="@string/password"
                 android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -69,7 +68,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Iniciar Sesión"
+                android:text="@string/login"
                 android:layout_marginTop="36dp"/>
 
             <!-- Enlace Registro -->
@@ -77,8 +76,8 @@
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿No tienes cuenta? Regístrate"
-                android:textColor="@color/teal_700"
+                android:text="@string/not_register"
+                android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 android:layout_marginTop="36dp"
                 android:clickable="true"
@@ -91,9 +90,9 @@
         android:id="@+id/btnVolverLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volver"
+        android:text="@string/button_back"
         android:background="@drawable/button_selector"
-        android:textColor="@color/primaryBlue"
+        android:textColor="?attr/colorOnPrimary"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -85,8 +85,8 @@ public class ProfileActivity extends AppCompatActivity {
         String photoUrl= prefs.getString(KEY_PHOTO, "");
 
         tvName.setText(username);
-        tvPhone.setText("Teléfono: " + phone);
-        tvEmail.setText("Email: "   + email);
+        tvPhone.setText("tel: " + phone);
+        tvEmail.setText("email: "   + email);
 
         if (!photoUrl.isEmpty()) {
             Glide.with(this).load(photoUrl)
@@ -115,14 +115,12 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showEditDialog() {
-        // Inflar layout
         View dialogView = LayoutInflater.from(this)
                 .inflate(R.layout.dialog_edit_profile, null);
         TextInputEditText etName  = dialogView.findViewById(R.id.etDialogName);
         TextInputEditText etPhone = dialogView.findViewById(R.id.etDialogPhone);
         TextInputEditText etEmail = dialogView.findViewById(R.id.etDialogEmail);
 
-        // Prefill con valores actuales
         etName.setText(tvName.getText().toString());
         etPhone.setText(tvPhone.getText().toString().replace("Teléfono: ",""));
         etEmail.setText(tvEmail.getText().toString().replace("Email: ",""));
@@ -192,7 +190,7 @@ public class ProfileActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG,90,baos);
         String b64 = Base64.encodeToString(baos.toByteArray(),Base64.DEFAULT);
         ApiService api = RetrofitClient.getInstance().create(ApiService.class);
-        api.uploadProfileImage(username,b64)
+        api.uploadProfileImage(userId,b64)
                 .enqueue(new Callback<GenericResponse>() {
                     @Override
                     public void onResponse(Call<GenericResponse> c, Response<GenericResponse> r) {

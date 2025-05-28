@@ -37,9 +37,10 @@ public interface ApiService {
 
     // Subir foto de perfil
     @FormUrlEncoded
-    @POST("update_profile_unigo.php")
+    @POST("upload_profile_image_unigo.php")
     Call<GenericResponse> uploadProfileImage(
-            @Field("name")   String name,
-            @Field("imagen") String imagenBase64
+            @Field("id")   int userId,
+            @Field("foto") String fotoBase64
     );
+
 }

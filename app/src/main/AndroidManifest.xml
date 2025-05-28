@@ -67,6 +67,16 @@
         <activity
             android:name=".ui.UniversityActivity"
             android:exported="false" />
+        
+        <!-- Actividad de bici -->
+        <activity
+            android:name=".ui.BikeActivity"
+            android:exported="false" />
+
+        <!-- Actividad de ajustes -->
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false" />
 
     </application>
 

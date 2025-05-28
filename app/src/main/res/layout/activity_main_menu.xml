@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryBlue">
+    android:background="?attr/colorPrimary">
 
     <!-- Universidad (centro) -->
     <com.google.android.material.card.MaterialCardView
@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@android:color/white">
+        android:backgroundTint="?attr/colorOnPrimary">
 
         <LinearLayout
             android:orientation="vertical"
@@ -29,26 +29,27 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_university"
-                app:tint="@color/primaryBlue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Universidad"
-                android:textColor="@color/primaryBlue"
-                android:textSize="12sp"
+                android:text="@string/uni"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Bicicleta (arriba derecha) -->
+    <!-- Bicicleta (arriba izquierda) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_bike"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toTopOf="@id/card_university"
         app:layout_constraintEnd_toEndOf="@id/card_university"
         android:layout_marginBottom="32dp"
@@ -64,26 +65,27 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_bike"
-                app:tint="@color/primaryBlue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bicicleta"
-                android:textColor="@color/primaryBlue"
-                android:textSize="10sp"
+                android:text="@string/bike"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Tranvía (arriba izquierda) -->
+    <!-- Ajustes (arriba derecha) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_tram"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toTopOf="@id/card_university"
         app:layout_constraintStart_toStartOf="@id/card_university"
         android:layout_marginBottom="32dp"
@@ -98,15 +100,16 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_tram"
-                app:tint="@color/primaryBlue" />
+                android:src="@drawable/ic_settings"
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tranvía"
-                android:textColor="@color/primaryBlue"
-                android:textSize="10sp"
+                android:text="@string/settings"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -118,7 +121,7 @@
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/card_university"
         app:layout_constraintBottom_toBottomOf="@id/card_university"
@@ -134,14 +137,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_bus"
-                app:tint="@color/primaryBlue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Autobús"
-                android:textColor="@color/primaryBlue"
-                android:textSize="10sp"
+                android:text="@string/bus"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -153,7 +157,7 @@
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintTop_toBottomOf="@id/card_university"
         app:layout_constraintStart_toStartOf="@id/card_university"
         app:layout_constraintEnd_toEndOf="@id/card_university"
@@ -169,14 +173,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_walk"
-                app:tint="@color/primaryBlue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A pie"
-                android:textColor="@color/primaryBlue"
-                android:textSize="10sp"
+                android:text="@string/walk"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -188,7 +193,7 @@
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/card_university"
         app:layout_constraintBottom_toBottomOf="@id/card_university"
@@ -204,14 +209,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_profile"
-                app:tint="@color/primaryBlue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perfil"
-                android:textColor="@color/primaryBlue"
-                android:textSize="10sp"
+                android:text="@string/profile"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

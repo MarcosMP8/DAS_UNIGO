@@ -27,11 +27,11 @@ public class UniversityActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
-                R.layout.spinner_item_multiline,              // diseño collapsed
+                R.layout.spinner_item_multiline,
                 carreras
         );
         adapter.setDropDownViewResource(
-                R.layout.spinner_dropdown_multiline           // diseño dropdown
+                R.layout.spinner_dropdown_multiline
         );
         spinnerCarreras.setAdapter(adapter);
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Fondo de estudiantes como imagen ampliada (zoom) -->
+    <!-- Fondo de estudiantes -->
     <ImageView
         android:id="@+id/fondoEstudiantes"
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:src="@drawable/fondo_estudiantes"
         android:adjustViewBounds="true" />
 
-    <!-- Logo UNIGO más grande -->
+    <!-- Logo UNIGO -->
     <ImageView
         android:id="@+id/logoUnigo"
         android:layout_width="250dp"
@@ -22,34 +22,34 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/logo" />
 
-    <!-- Texto clicable para registrarse (en el fondo, debajo del botón) -->
+    <!-- Texto registrarse  -->
     <TextView
         android:id="@+id/enlaceRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tienes cuenta? Regístrate"
-        android:textColor="#2196F3"
-        android:textSize="14sp"
+        android:text="@string/not_register"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="15dp"
         android:clickable="true"
         android:focusable="true" />
 
-    <!-- Botón Acceder (encima del enlace) -->
+    <!-- Botón Acceder -->
     <Button
         android:id="@+id/btnAcceder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acceder"
+        android:text="@string/access"
         android:textAllCaps="false"
         android:layout_above="@id/enlaceRegistro"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="#1E88E5"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
         android:padding="12dp" />
 
 </RelativeLayout>

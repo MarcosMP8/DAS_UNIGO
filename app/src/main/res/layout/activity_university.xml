@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@color/white">
+    android:background="?attr/colorSurface">
 
-    <!-- Logo UPV/EHU centrado arriba -->
+    <!-- Logo UPV/EHU -->
     <ImageView
         android:id="@+id/imgUniversityLogo"
         android:layout_width="220dp"
@@ -19,26 +19,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Texto instructivo grado -->
+    <!-- Texto grado -->
     <TextView
         android:id="@+id/tvChooseDegree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="Elija grado que está cursando"
-        android:textColor="@color/black"
+        android:text="@string/course"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgUniversityLogo" />
 
-    <!-- Selector de grado (altura aumentada para dos líneas) -->
+    <!-- Selector de grado -->
     <Spinner
         android:id="@+id/spinnerCarreras"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@drawable/spinner_background"
         android:entries="@array/alava_carreras"
         android:spinnerMode="dropdown"
         android:dropDownWidth="match_parent"
@@ -47,21 +47,21 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    <!-- Título sección campus (más grande y en negrita) -->
+    <!-- Título sección campus -->
     <TextView
         android:id="@+id/tvCampusTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Campus Álava UPV/EHU"
-        android:textColor="@color/black"
+        android:text="@string/campus"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerCarreras" />
 
-    <!-- Dirección del campus (un pelín más pequeña) -->
+    <!-- Dirección del campus -->
     <TextView
         android:id="@+id/tvUniversityAddress"
         android:layout_width="0dp"
@@ -70,13 +70,13 @@
         android:gravity="center"
         android:padding="8dp"
         android:text="Comandante Izarduy, 23, 01006 Vitoria-Gasteiz, Álava, España"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCampusTitle" />
 
-    <!-- Enlace web estilo TVRegister -->
+    <!-- Enlace web -->
     <TextView
         android:id="@+id/tvVisitUniversity"
         android:layout_width="wrap_content"
@@ -84,21 +84,21 @@
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:text="Visitar web UPV/EHU"
-        android:textColor="@color/teal_700"
+        android:text="@string/web"
+        android:textColor="?attr/colorSecondary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUniversityAddress" />
 
-    <!-- Botón Volver (texto en blanco) -->
+    <!-- Botón Volver -->
     <Button
         android:id="@+id/btnVolverUniversity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volver"
+        android:text="@string/button_back"
         android:background="@drawable/button_selector"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnPrimary"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

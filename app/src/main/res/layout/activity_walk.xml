@@ -22,7 +22,7 @@
         android:contentDescription="Volver"
         android:clickable="true"
         android:focusable="true"
-        android:elevation="8dp"/>           <!-- para que quede siempre encima -->
+        android:elevation="8dp"/>
 
     <!-- Cuadro de información (distancia y tiempo) -->
     <TextView
@@ -32,9 +32,9 @@
         android:layout_gravity="top|end"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:background="#CCFFFFFF"
+        android:background="?attr/colorSurface"
         android:padding="8dp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnSecondary"
         android:textSize="14sp"
         android:visibility="gone"
         android:elevation="8dp"/>

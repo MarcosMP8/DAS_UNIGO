@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Unigo</string>
+    <string name="title_settings">Ajustes</string>
+    <string name="label_language">Idioma</string>
+    <string name="label_theme">Apariencia</string>
+    <string name="label_dark_mode">Modo oscuro</string>
+    <string name="button_back">Volver</string>
+    <string name="course">Elija grado que está cursando</string>
+    <string name="campus">Campus Álava UPV/EHU</string>
+    <string name="web">Visitar web UPV/EHU</string>
+    <string name="profile">Perfil</string>
+    <string name="pfp">Foto de perfil</string>
+    <string name="name">Tu nombre</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="uni">Universidad</string>
+    <string name="bike">Bici</string>
+    <string name="settings">Ajustes</string>
+    <string name="bus">Autobús</string>
+    <string name="walk">A pie</string>
+    <string name="info">Información</string>
+    <string name="stop">Paradas</string>
+    <string name="not_register">¿No tienes cuenta? Regístrate</string>
+    <string name="access">Acceder</string>
+    <string name="not_login">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="mail">Correo electrónico</string>
+    <string name="tel">Teléfono</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="user">Usuario</string>
 </resources>

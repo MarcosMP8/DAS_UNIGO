@@ -37,4 +37,9 @@
         <item>Grado en Trabajo Social (Facultad de Relaciones Laborales y Trabajo Social. Sección Álava)</item>
         <item>Grado en Traducción e Interpretación (Facultad de Letras)</item>
     </string-array>
+
+    <string-array name="languages">
+        <item>Español</item>
+        <item>English</item>
+    </string-array>
 </resources>
