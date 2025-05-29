@@ -144,20 +144,26 @@ public class BusActivity extends AppCompatActivity {
             tiempos[2] = (int) Math.round(distancias[2] / 5.0 * 60);
 
             runOnUiThread(() -> {
-                tvInfo.setText(String.format(
-                        Locale.getDefault(),
-                        "🟢 A pie hasta '%s': %.2f km (%d min)\n🚌 En bus: %.2f km (%d min)\n🔴 A pie al campus: %.2f km (%d min)",
-                        origen.getStopName(), distancias[0], tiempos[0],
-                        distancias[1], tiempos[1],
-                        distancias[2], tiempos[2]
-                ));
-                tvInfo.setMaxLines(3); // Estado inicial
+                double d0 = distancias[0], d1 = distancias[1], d2 = distancias[2];
+                int t0 = tiempos[0], t1 = tiempos[1], t2 = tiempos[2];
+                int totalTime = t0 + t1 + t2;
+
+                String info = getString(
+                        R.string.route_info,
+                        origen.getStopName(),
+                        d0, t0,
+                        d1, t1,
+                        d2, t2,
+                        totalTime
+                );
+                tvInfo.setText(info);
+                tvInfo.setMaxLines(3);
                 tvInfo.setOnClickListener(v -> {
                     if (infoExpandida) {
                         tvInfo.setMaxLines(3);
                         infoExpandida = false;
                     } else {
-                        tvInfo.setMaxLines(Integer.MAX_VALUE); // Mostrar todo
+                        tvInfo.setMaxLines(Integer.MAX_VALUE);
                         infoExpandida = true;
                     }
                 });

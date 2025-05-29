@@ -29,4 +29,11 @@
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="user">Usuario</string>
+    <string name="walk_info">Dist: %1$.2f km\nTiempo: %2$d min</string>
+    <string name="route_info">
+        🟢 A pie hasta “%1$s”: %2$.2f km (%3$d min)\n
+        🚌 En bus: %4$.2f km (%5$d min)\n
+        🔴 A pie al campus: %6$.2f km (%7$d min)\n
+        ⏱️ Tiempo total: %8$d min
+    </string>
 </resources>

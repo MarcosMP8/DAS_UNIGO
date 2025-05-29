@@ -126,7 +126,7 @@ public class WalkActivity extends AppCompatActivity {
         // Usamos directamente la ubicación aleatoria simulada
         GeoPoint start = ubicacionAleatoria;
         addUserMarker(start);
-        addDestMarker(CAMPUS_LOCATION, "Campus Álava");
+        addDestMarker(CAMPUS_LOCATION, "Campus UPV/EHU");
         drawRoute(start, CAMPUS_LOCATION);
     }
 
@@ -175,10 +175,10 @@ public class WalkActivity extends AppCompatActivity {
 
                 double distanciaKm = road.mLength;
                 int minutos = (int) Math.round((distanciaKm / 5.0) * 60);
-                String info = String.format(
-                        Locale.getDefault(),
-                        "Dist: %.2f km\nTiempo: %d min",
-                        distanciaKm, minutos
+                String info = getString(
+                        R.string.walk_info,
+                        distanciaKm,
+                        minutos
                 );
                 tvInfo.setText(info);
                 tvInfo.setVisibility(View.VISIBLE);
