@@ -53,32 +53,32 @@ public class MainMenuActivity extends AppCompatActivity {
         cardProfile    = findViewById(R.id.card_profile);
 
         cardUniversity.setOnClickListener(v -> {
-            Toast.makeText(this, "Universidad seleccionada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_university_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, UniversityActivity.class));
         });
 
         cardBike.setOnClickListener(v -> {
-            Toast.makeText(this, "Bicicleta seleccionada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_bike_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, BikeActivity.class));
         });
 
         cardTram.setOnClickListener(v -> {
-                Toast.makeText(this, "Ajustes seleccionada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_settings_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SettingsActivity.class));
         });
 
         cardBus.setOnClickListener(v -> {
-            Toast.makeText(this, "Autobús seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_bus_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainMenuActivity.this, BusActivity.class));
         });
 
         cardWalk.setOnClickListener(v -> {
-            Toast.makeText(this, "A pie seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_walk_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainMenuActivity.this, WalkActivity.class));
         });
 
         cardProfile.setOnClickListener(v -> {
-            Toast.makeText(this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_profile_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, ProfileActivity.class));
         });
     }

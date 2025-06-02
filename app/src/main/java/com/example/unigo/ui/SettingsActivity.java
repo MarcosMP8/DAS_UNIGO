@@ -67,11 +67,14 @@ public class SettingsActivity extends AppCompatActivity {
         String[] langs   = getResources().getStringArray(R.array.languages);
         String spanish   = langs[0];
         String english   = langs[1];
+        String basque  = langs[2];
 
         String savedLoc = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                 .getString(KEY_LOCALE, Locale.getDefault().getLanguage());
         if ("en".equals(savedLoc)) {
             spinnerLanguage.setSelection(adapter.getPosition(english));
+        } else if ("eu".equals(savedLoc)) {
+            spinnerLanguage.setSelection(adapter.getPosition(basque));
         } else {
             spinnerLanguage.setSelection(adapter.getPosition(spanish));
         }
@@ -79,8 +82,14 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String sel = parent.getItemAtPosition(pos).toString();
-                String code = sel.equals(english) ? "en" : "es";
-
+                String code;
+                if (sel.equals(english)) {
+                    code = "en";
+                } else if (sel.equals(basque)) {
+                    code = "eu";
+                } else {
+                    code = "es";
+                }
                 SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 String current = prefs.getString(KEY_LOCALE, "");
                 if (!code.equals(current)) {

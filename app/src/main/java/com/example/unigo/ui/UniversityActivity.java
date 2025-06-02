@@ -46,7 +46,7 @@ public class UniversityActivity extends AppCompatActivity {
                 String seleccion = carreras[position];
                 Toast.makeText(
                         UniversityActivity.this,
-                        "Has seleccionado: " + seleccion,
+                        getString(R.string.toast_selected) + seleccion,
                         Toast.LENGTH_SHORT
                 ).show();
             }

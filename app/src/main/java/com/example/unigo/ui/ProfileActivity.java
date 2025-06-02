@@ -59,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(), granted -> {
                         if (granted) openCamera();
-                        else Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
+                        else Toast.makeText(this, getString(R.string.permission_camera_denied), Toast.LENGTH_SHORT).show();
                     }
             );
 
@@ -122,24 +122,24 @@ public class ProfileActivity extends AppCompatActivity {
         TextInputEditText etEmail = dialogView.findViewById(R.id.etDialogEmail);
 
         etName.setText(tvName.getText().toString());
-        etPhone.setText(tvPhone.getText().toString().replace("Teléfono: ",""));
-        etEmail.setText(tvEmail.getText().toString().replace("Email: ",""));
+        etPhone.setText(tvPhone.getText().toString().replace("tel: ",""));
+        etEmail.setText(tvEmail.getText().toString().replace("email: ",""));
 
         new AlertDialog.Builder(this)
-                .setTitle("Editar perfil")
+                .setTitle(getString(R.string.dialog_edit_profile_title))
                 .setView(dialogView)
-                .setPositiveButton("Guardar", (d, which) -> {
+                .setPositiveButton(getString(R.string.button_save), (d, which) -> {
                     String newName  = etName.getText().toString().trim();
                     String newPhone = etPhone.getText().toString().trim();
                     String newEmail = etEmail.getText().toString().trim();
                     if (newName.isEmpty() || newEmail.isEmpty()) {
                         Toast.makeText(this,
-                                "El nombre y email son obligatorios", Toast.LENGTH_SHORT).show();
+                                getString(R.string.toast_name_email_required), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     updateProfileOnServer(newName,newPhone,newEmail);
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(getString(R.string.button_cancel), null)
                 .show();
     }
 
@@ -151,29 +151,28 @@ public class ProfileActivity extends AppCompatActivity {
             public void onResponse(Call<GenericResponse> call,
                                    Response<GenericResponse> resp) {
                 if (resp.isSuccessful() && resp.body()!=null&&resp.body().isSuccess()) {
-                    // Guardar en prefs
                     SharedPreferences.Editor e = getSharedPreferences(PREFS,MODE_PRIVATE).edit();
                     e.putString("name",name);
                     e.putString("phone",phone);
                     e.putString("email",email);
                     e.apply();
-                    // Actualizar UI
+
                     tvName.setText(name);
-                    tvPhone.setText("Teléfono: "+phone);
-                    tvEmail.setText("Email: "+email);
+                    tvPhone.setText("tel: "+phone);
+                    tvEmail.setText("email: "+email);
                     Toast.makeText(ProfileActivity.this,
-                            "Perfil actualizado", Toast.LENGTH_SHORT).show();
+                            getString(R.string.toast_profile_updated), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ProfileActivity.this,
-                            "Error al actualizar: "+
-                                    (resp.body()!=null?resp.body().getMessage():"Servidor"),
+                            getString(R.string.toast_error_update)+
+                                    (resp.body()!=null?resp.body().getMessage():getString(R.string.server)),
                             Toast.LENGTH_LONG).show();
                 }
             }
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
                 Toast.makeText(ProfileActivity.this,
-                        "Fallo de red: "+t.getMessage(),
+                        getString(R.string.toast_network_failure)+t.getMessage(),
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -201,7 +200,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Glide.with(ProfileActivity.this).load(url)
                                     .into(imgUserIcon);
                             Toast.makeText(ProfileActivity.this,
-                                    "Foto actualizada",Toast.LENGTH_SHORT).show();
+                                    getString(R.string.toast_photo_updated),Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override public void onFailure(Call<GenericResponse> c, Throwable t){}

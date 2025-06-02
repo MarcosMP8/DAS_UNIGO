@@ -58,11 +58,11 @@ public class RegisterActivity extends AppCompatActivity {
         String email    = etEmail.getText().toString().trim();
 
         if (username.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-            showErrorDialog("Campos vacíos", "Todos los campos son obligatorios.");
+            showErrorDialog(getString(R.string.error_empty_fields_title), getString(R.string.error_empty_fields_required));
             return;
         }
         if (!password.equals(confirm)) {
-            showErrorDialog("Error en la contraseña", "Las contraseñas no coinciden.");
+            showErrorDialog(getString(R.string.error_password_mismatch_title), getString(R.string.error_password_mismatch_message));
             return;
         }
 
@@ -76,14 +76,14 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
                         } else {
-                            showErrorDialog("Error", resp.body()!=null
+                            showErrorDialog(getString(R.string.error_generic_title), resp.body()!=null
                                     ? resp.body().getMessage()
-                                    : "No se pudo conectar al servidor.");
+                                    : getString(R.string.error_server_connection_message));
                         }
                     }
                     @Override
                     public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                        showErrorDialog("Fallo de conexión", t.getMessage());
+                        showErrorDialog(getString(R.string.error_connection_failure_title), t.getMessage());
                     }
                 });
     }

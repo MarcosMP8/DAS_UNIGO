@@ -211,7 +211,7 @@ public class WalkActivity extends AppCompatActivity {
         } else {
             Toast.makeText(
                     this,
-                    "Permiso de ubicación denegado",
+                    getString(R.string.permission_location_denied),
                     Toast.LENGTH_SHORT
             ).show();
         }

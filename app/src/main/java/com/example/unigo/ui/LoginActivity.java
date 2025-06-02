@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         if (username.isEmpty() || password.isEmpty()) {
-            showErrorDialog("Campos vacíos", "Introduce usuario y contraseña.");
+            showErrorDialog(getString(R.string.error_empty_fields_title), getString(R.string.error_empty_fields_message));
             return;
         }
 
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> resp) {
                 if (!resp.isSuccessful() || resp.body() == null) {
-                    showErrorDialog("Error", "No se pudo conectar al servidor.");
+                    showErrorDialog(getString(R.string.error_generic_title), getString(R.string.error_server_message));
                     return;
                 }
                 LoginResponse login = resp.body();
@@ -77,18 +77,26 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     finish();
                 } else {
-                    showErrorDialog("Error de login", login.getMessage());
+                    showErrorDialog(getString(R.string.error_login_error_title), login.getMessage());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 if (t instanceof java.net.UnknownHostException) {
-                    showErrorDialog("Sin conexión", "Verifica tu conexión a Internet.");
+                    showErrorDialog(
+                            getString(R.string.error_no_connection_title),
+                            getString(R.string.error_no_connection_message)
+                    );
                 } else if (t instanceof java.net.SocketTimeoutException) {
-                    showErrorDialog("Servidor ocupado", "El servidor tardó demasiado en responder.");
+                    showErrorDialog(
+                            getString(R.string.error_server_busy_title),
+                            getString(R.string.error_server_busy_message)
+                    );
                 } else {
-                    showErrorDialog("Error desconocido", t.getMessage());
+                    showErrorDialog(
+                            getString(R.string.error_unknown_title),
+                            t.getMessage());
                 }
                 android.util.Log.e("LOGIN_ERROR", "Error técnico: ", t);
             }

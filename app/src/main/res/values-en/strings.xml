@@ -36,4 +36,41 @@
         🔴 Walk to campus: %6$.2f km (%7$d min)\n
         ⏱️ Total time: %8$d min
     </string>
+    <string name="toast_university_selected">University selected</string>
+    <string name="toast_bike_selected">Bike selected</string>
+    <string name="toast_settings_selected">Settings selected</string>
+    <string name="toast_bus_selected">Bus selected</string>
+    <string name="toast_walk_selected">Walk selected</string>
+    <string name="toast_profile_selected">Profile selected</string>
+    <string name="error_empty_fields_title">Empty fields</string>
+    <string name="error_empty_fields_message">Please enter username and password.</string>
+    <string name="error_generic_title">Error</string>
+    <string name="error_server_message">Could not connect to the server.</string>
+    <string name="error_login_error_title">Login error</string>
+    <string name="error_no_connection_title">No connection</string>
+    <string name="error_no_connection_message">Please check your Internet connection.</string>
+    <string name="error_server_busy_title">Server busy</string>
+    <string name="error_server_busy_message">The server took too long to respond.</string>
+    <string name="error_unknown_title">Unknown error</string>
+    <string name="permission_camera_denied">Camera permission denied</string>
+    <string name="dialog_edit_profile_title">Edit profile</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="toast_name_email_required">Name and email are required</string>
+    <string name="toast_profile_updated">Profile updated</string>
+    <string name="toast_error_update">Update error: %1$s</string>
+    <string name="server">Server</string>
+    <string name="toast_network_failure">Network failure: %1$s</string>
+    <string name="toast_photo_updated">Photo updated</string>
+    <string name="error_empty_fields_required">All fields are required.</string>
+    <string name="error_password_mismatch_title">Password mismatch</string>
+    <string name="error_password_mismatch_message">Passwords do not match.</string>
+    <string name="error_server_connection_message">Could not connect to the server.</string>
+    <string name="error_connection_failure_title">Connection failure</string>
+    <string name="toast_selected">You selected: %1$s</string>
+    <string name="permission_location_denied">Location permission denied</string>
+    <string name="toast_no_route_to_campus">No route to campus</string>
+    <string name="toast_bus_route_not_found">Bus route not found</string>
+    <string name="label_origin_stop">Origin stop</string>
+    <string name="label_last_stop">Last stop</string>
 </resources>

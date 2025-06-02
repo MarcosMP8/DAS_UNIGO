@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Unigo</string>
+    <string name="title_settings">Ezarpenak</string>
+    <string name="label_language">Hizkuntza</string>
+    <string name="label_theme">Itxura</string>
+    <string name="label_dark_mode">Gaueko modua</string>
+    <string name="button_back">Itzuli</string>
+    <string name="course">Hautatu ikasten ari zaren gradua</string>
+    <string name="campus">Araba UPV/EHU kanpusa</string>
+    <string name="web">Bisitatu UPV/EHU webgunea</string>
+    <string name="profile">Profila</string>
+    <string name="pfp">Profilaren argazkia</string>
+    <string name="name">Zure izena</string>
+    <string name="logout">Saioa itxi</string>
+    <string name="uni">Unibertsitatea</string>
+    <string name="bike">Bizikleta</string>
+    <string name="settings">Ezarpenak</string>
+    <string name="bus">Autobusa</string>
+    <string name="walk">Oinez</string>
+    <string name="info">Informazioa</string>
+    <string name="stop">Gelditokiak</string>
+    <string name="not_register">Ez duzu konturik? Erregistratu</string>
+    <string name="access">Sartu</string>
+    <string name="not_login">Jada kontua al duzu? Saioa hasi</string>
+    <string name="login">Saioa hasi</string>
+    <string name="register">Erregistratu</string>
+    <string name="mail">Posta elektronikoa</string>
+    <string name="tel">Telefonoa</string>
+    <string name="password">Pasahitza</string>
+    <string name="confirm_password">Pasahitza berretsi</string>
+    <string name="user">Erabiltzailea</string>
+    <string name="walk_info">Dist: %1$.2f km\nDenbora: %2$d min</string>
+    <string name="route_info">
+        🟢 Oinez “%1$s”-era: %2$.2f km (%3$d min)\n
+        🚌 Autobusez: %4$.2f km (%5$d min)\n
+        🔴 Oinez kanpusera: %6$.2f km (%7$d min)\n
+        ⏱️ Denbora guztira: %8$d min
+    </string>
+    <string name="toast_university_selected">Unibertsitatea hautatu duzu</string>
+    <string name="toast_bike_selected">Bizikleta hautatu duzu</string>
+    <string name="toast_settings_selected">Ezarpenak hautatu dituzu</string>
+    <string name="toast_bus_selected">Autobusa hautatu duzu</string>
+    <string name="toast_walk_selected">Oinez hautatu duzu</string>
+    <string name="toast_profile_selected">Profila hautatu duzu</string>
+    <string name="error_empty_fields_title">Eremu hutsak</string>
+    <string name="error_empty_fields_message">Derrigorrezko eremu guztiak bete behar dira.</string>
+    <string name="error_generic_title">Errorea</string>
+    <string name="error_server_message">Ezin izan da zerbitzarira konektatu.</string>
+    <string name="error_login_error_title">Saioa hasteko errorea</string>
+    <string name="error_no_connection_title">Konexiorik ez</string>
+    <string name="error_no_connection_message">Egiaztatu zure Internet konexioa.</string>
+    <string name="error_server_busy_title">Zerbitzaria motela</string>
+    <string name="error_server_busy_message">Zerbitzariak gehiegi berandu erantzun du.</string>
+    <string name="error_unknown_title">Errore ezezaguna</string>
+    <string name="dialog_edit_profile_title">Profila editatu</string>
+    <string name="button_save">Gorde</string>
+    <string name="button_cancel">Utzi</string>
+    <string name="toast_name_email_required">Izena eta posta elektronikoa derrigorrezkoak dira</string>
+    <string name="permission_camera_denied">Kameraren baimena ukatua</string>
+    <string name="toast_profile_updated">Profila eguneratu da</string>
+    <string name="toast_error_update">Eguneratzeko errorea: %1$s</string>
+    <string name="server">Zerbitzaria</string>
+    <string name="toast_network_failure">Sareko errorea: %1$s</string>
+    <string name="toast_photo_updated">Argazkia eguneratu da</string>
+    <string name="error_empty_fields_required">Derrigorrezko eremu guztiak bete behar dira.</string>
+    <string name="error_password_mismatch_title">Pasahitz ezberdinak</string>
+    <string name="error_password_mismatch_message">Pasahitzek ez dute bat egiten.</string>
+    <string name="error_server_connection_message">Ezin izan da zerbitzarira konektatu.</string>
+    <string name="error_connection_failure_title">Konexio errorea</string>
+    <string name="toast_selected">Hautatu duzu: %1$s</string>
+    <string name="permission_location_denied">Kokaleko baimena ukatua</string>
+    <string name="toast_no_route_to_campus">Ez dago ibilbiderik kanpusera</string>
+    <string name="toast_bus_route_not_found">Ez da aurkitu autobus ibilbiderik</string>
+    <string name="label_origin_stop">Jatorrizko geldialdia</string>
+    <string name="label_last_stop">Azken geldialdia</string>
+</resources>

@@ -112,22 +112,22 @@ public class BusActivity extends AppCompatActivity {
 
             ParadaBus origen = encontrarParadaCercanaConRutaACampus();
             if (origen == null) {
-                runOnUiThread(() -> Toast.makeText(this, "No hay ruta al campus", Toast.LENGTH_LONG).show());
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.toast_no_route_to_campus), Toast.LENGTH_LONG).show());
                 return;
             }
 
             int campusId = encontrarStopIdPorGeoPoint(campus);
             List<Integer> stopsRuta = buscarRutaBus(origen.getStopId(), campusId);
             if (stopsRuta == null) {
-                runOnUiThread(() -> Toast.makeText(this, "Ruta en bus no encontrada", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.toast_bus_route_not_found), Toast.LENGTH_SHORT).show());
                 return;
             }
 
             ParadaBus ultima = getParadaById(stopsRuta.get(stopsRuta.size() - 1));
 
             runOnUiThread(() -> {
-                mostrarParada(origen, "Parada origen");
-                mostrarParada(ultima, "Última parada");
+                mostrarParada(origen, getString(R.string.label_origin_stop));
+                mostrarParada(ultima, getString(R.string.label_last_stop));
                 mostrarParadasEnLista(stopsRuta);
             });
 

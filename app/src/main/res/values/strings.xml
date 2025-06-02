@@ -36,4 +36,41 @@
         🔴 A pie al campus: %6$.2f km (%7$d min)\n
         ⏱️ Tiempo total: %8$d min
     </string>
+    <string name="toast_university_selected">Universidad seleccionada</string>
+    <string name="toast_bike_selected">Bicicleta seleccionada</string>
+    <string name="toast_settings_selected">Ajustes seleccionada</string>
+    <string name="toast_bus_selected">Autobús seleccionado</string>
+    <string name="toast_walk_selected">A pie seleccionado</string>
+    <string name="toast_profile_selected">Perfil seleccionado</string>
+    <string name="error_empty_fields_title">Campos vacíos</string>
+    <string name="error_empty_fields_message">Introduce usuario y contraseña.</string>
+    <string name="error_generic_title">Error</string>
+    <string name="error_server_message">No se pudo conectar al servidor.</string>
+    <string name="error_login_error_title">Error de login</string>
+    <string name="error_no_connection_title">Sin conexión</string>
+    <string name="error_no_connection_message">Verifica tu conexión a Internet.</string>
+    <string name="error_server_busy_title">Servidor ocupado</string>
+    <string name="error_server_busy_message">El servidor tardó demasiado en responder.</string>
+    <string name="error_unknown_title">Error desconocido</string>
+    <string name="dialog_edit_profile_title">Editar perfil</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="toast_name_email_required">El nombre y email son obligatorios</string>
+    <string name="permission_camera_denied">Permiso de cámara denegado</string>
+    <string name="toast_profile_updated">Perfil actualizado</string>
+    <string name="toast_error_update">Error al actualizar: %1$s</string>
+    <string name="server">Servidor</string>
+    <string name="toast_network_failure">Fallo de red: %1$s</string>
+    <string name="toast_photo_updated">Foto actualizada</string>
+    <string name="error_empty_fields_required">Todos los campos son obligatorios.</string>
+    <string name="error_password_mismatch_title">Error en la contraseña</string>
+    <string name="error_password_mismatch_message">Las contraseñas no coinciden.</string>
+    <string name="error_server_connection_message">No se pudo conectar al servidor.</string>
+    <string name="error_connection_failure_title">Fallo de conexión</string>
+    <string name="toast_selected">Has seleccionado: %1$s</string>
+    <string name="permission_location_denied">Permiso de ubicación denegado</string>
+    <string name="toast_no_route_to_campus">No hay ruta al campus</string>
+    <string name="toast_bus_route_not_found">Ruta en bus no encontrada</string>
+    <string name="label_origin_stop">Parada origen</string>
+    <string name="label_last_stop">Última parada</string>
 </resources>
