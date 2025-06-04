@@ -4,7 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    android:paddingTop="50dp">
+
+    <ImageView
+        android:id="@+id/logoUnigo"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/logo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Universidad (centro) -->
     <com.google.android.material.card.MaterialCardView
@@ -80,7 +90,7 @@
 
     <!-- Ajustes (arriba derecha) -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_tram"
+        android:id="@+id/card_settings"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"

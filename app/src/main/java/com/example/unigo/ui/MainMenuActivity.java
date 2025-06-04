@@ -24,7 +24,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private MaterialCardView cardUniversity;
     private MaterialCardView cardBike;
-    private MaterialCardView cardTram;
+    private MaterialCardView cardSettings;
     private MaterialCardView cardBus;
     private MaterialCardView cardWalk;
     private MaterialCardView cardProfile;
@@ -47,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         cardUniversity = findViewById(R.id.card_university);
         cardBike       = findViewById(R.id.card_bike);
-        cardTram       = findViewById(R.id.card_tram);
+        cardSettings       = findViewById(R.id.card_settings);
         cardBus        = findViewById(R.id.card_bus);
         cardWalk       = findViewById(R.id.card_walk);
         cardProfile    = findViewById(R.id.card_profile);
@@ -62,7 +62,7 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(new Intent(this, BikeActivity.class));
         });
 
-        cardTram.setOnClickListener(v -> {
+        cardSettings.setOnClickListener(v -> {
                 Toast.makeText(this, getString(R.string.toast_settings_selected), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SettingsActivity.class));
         });
