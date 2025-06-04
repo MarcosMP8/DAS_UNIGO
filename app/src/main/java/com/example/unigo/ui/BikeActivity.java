@@ -59,7 +59,7 @@ public class BikeActivity extends AppCompatActivity {
     private IMapController mMyMapController;
     private GeoPoint ubicacionAleatoria;
     private Polygon vitoriaPolygon;
-    private GeoPoint campus = new GeoPoint(42.8467, -2.6731);
+    private GeoPoint campus = new GeoPoint(42.839448, -2.670349);
     private List<GeoPoint> aparcamientosSeguros = new ArrayList<GeoPoint>();
     private List<GeoPoint> puntosDeReparacion = new ArrayList<GeoPoint>();
     private BoundingBox bicisBB;
@@ -87,7 +87,7 @@ public class BikeActivity extends AppCompatActivity {
 
     private void checkGPSYPermisos() {
         if (!isGPSEnabled()) {
-            Toast.makeText(this, "GPS desactivado. Actívalo y vuelve a intentarlo.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,getString(R.string.gps_off), Toast.LENGTH_LONG).show();
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             finish();
             return;
@@ -152,7 +152,7 @@ public class BikeActivity extends AppCompatActivity {
 
     private void calcularRuta() {
         if (ubicacionAleatoria == null) {
-            Toast.makeText(this, "Ubicación no disponible", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_location), Toast.LENGTH_SHORT).show();
             return;
         }
         // Llamada en segundo plano para no congelar la UI
@@ -181,7 +181,7 @@ public class BikeActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 if (road.mStatus != Road.STATUS_OK) {
-                    Toast.makeText(this, "Error al calcular la ruta", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.error_route), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -196,10 +196,10 @@ public class BikeActivity extends AppCompatActivity {
 
                 // Mostrar distancia y duración
                 double km = road.mLength;
-                distanciaTotalTextView.setText("Distancia total: \n" + String.format("%.2f", km) + " km");
+                distanciaTotalTextView.setText(getString(R.string.distance_total_format, km));
                 double minutos = road.mDuration / 60.0;
                 Toast.makeText(this,
-                        String.format("Distancia: %.2f km\nDuración estimada: %.1f min", km, minutos),
+                        getString(R.string.route_toast, km, minutos),
                         Toast.LENGTH_LONG).show();
             });
 
@@ -257,14 +257,14 @@ public class BikeActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error al cargar los parkings seguros", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,getString(R.string.error_parkings), Toast.LENGTH_LONG).show();
         }
     }
 
     private void marcarCampus() {
         Marker marker = new Marker(map);
         marker.setPosition(campus);
-        marker.setTitle("Campus UPV/EHU");
+        marker.setTitle(getString(R.string.campus));
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         marker.setIcon(getResources().getDrawable(R.drawable.ic_university, getTheme()));
         map.getOverlays().add(marker);
@@ -281,7 +281,7 @@ public class BikeActivity extends AppCompatActivity {
     }
     private void añadirParkingsSeguros() {
         final ArrayList<OverlayItem> items = new ArrayList<>();
-        String titulo = "VGbiziz: Red de aparcamientos seguros para bicicletas";
+        String titulo = getString(R.string.vgbiziz);
         // Datos extraídos del servidor WSM capa 21 mediante QGIS
         items.add(new OverlayItem(
                 titulo,
@@ -416,20 +416,17 @@ public class BikeActivity extends AppCompatActivity {
     private void añadirParkingYReparacion() {
         final ArrayList<OverlayItem> items = new ArrayList<>();
         // Datos extraídos de los archivos GeoJSON (coordenadas, nombre, dirección): https://www.vitoria-gasteiz.org/geovitoria/geo?idioma=ES#YWNjaW9uPXNob3cmaWQ9MjE1MTAmbj11bmRlZmluZWQ=
-        items.add(new OverlayItem(
-                "Punto de reparación y mantenimiento de bicicletas",
+        items.add(new OverlayItem(getString(R.string.repair_point),
                 "FERMIN LASUEN, 1",
                 new GeoPoint(42.855289, -2.670029)
         ));
 
-        items.add(new OverlayItem(
-                "Punto de reparación y mantenimiento de bicicletas",
+        items.add(new OverlayItem(getString(R.string.repair_point),
                 "FRANCISCO JAVIER DE LANDABURU",
                 new GeoPoint(42.862555, -2.683456)
         ));
 
-        items.add(new OverlayItem(
-                "Oroimenezko bizikleten aparkaleku segurua",
+        items.add(new OverlayItem(getString(R.string.parking2),
                 "OLAGUIBEL",
                 new GeoPoint(42.846453, -2.671215)
         ));
@@ -489,7 +486,7 @@ public class BikeActivity extends AppCompatActivity {
         if (ubicacionAleatoria == null) return;
         Marker marker = new Marker(map);
         marker.setPosition(ubicacionAleatoria);
-        marker.setTitle("Ubicación inicial");
+        marker.setTitle(getString(R.string.initial_location));
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         marker.setIcon(getResources().getDrawable(R.drawable.ic_map_marker));
         map.getOverlays().add(marker);
@@ -568,11 +565,10 @@ public class BikeActivity extends AppCompatActivity {
                 calcularRuta();
 
             } else {
-                Toast.makeText(this, "Permisos necesarios no concedidos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,getString(R.string.permission_not_granted), Toast.LENGTH_SHORT).show();
             }
         }
     }
-
 
     @Override
     protected void onResume() {
@@ -586,4 +582,3 @@ public class BikeActivity extends AppCompatActivity {
         map.onPause();
     }
 }
-

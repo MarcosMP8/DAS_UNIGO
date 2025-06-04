@@ -73,4 +73,15 @@
     <string name="toast_bus_route_not_found">Bus route not found</string>
     <string name="label_origin_stop">Origin stop</string>
     <string name="label_last_stop">Last stop</string>
+    <string name="gps_off">GPS is off. Please enable it and try again.</string>
+    <string name="not_location">Location not available</string>
+    <string name="error_route">Error calculating route</string>
+    <string name="distance_total_format">Total distance:\n%1$.2f km</string>
+    <string name="route_toast">Distance: %1$.2f km\nEstimated duration: %2$.1f min</string>
+    <string name="error_parkings">Error loading secure parkings</string>
+    <string name="vgbiziz">VGbiziz: Network of secure bicycle parking</string>
+    <string name="parking2">Secure parking for commemorative bicycles</string>
+    <string name="repair_point">Bicycle repair and maintenance point</string>
+    <string name="initial_location">Initial location</string>
+    <string name="permission_not_granted">Required permissions not granted</string>
 </resources>

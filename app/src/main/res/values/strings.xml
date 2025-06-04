@@ -73,4 +73,15 @@
     <string name="toast_bus_route_not_found">Ruta en bus no encontrada</string>
     <string name="label_origin_stop">Parada origen</string>
     <string name="label_last_stop">Última parada</string>
+    <string name="gps_off">GPS desactivado. Actívalo y vuelve a intentarlo.</string>
+    <string name="not_location">Ubicación no disponible</string>
+    <string name="error_route">Error al calcular la ruta</string>
+    <string name="distance_total_format">Distancia total:\n%1$.2f km</string>
+    <string name="route_toast">Distancia: %1$.2f km\nDuración estimada: %2$.1f min</string>
+    <string name="error_parkings">Error al cargar los parkings seguros</string>
+    <string name="vgbiziz">VGbiziz: Red de aparcamientos seguros para bicicletas</string>
+    <string name="parking2">Aparcamiento seguro para bicicletas conmemorativas</string>
+    <string name="repair_point">Punto de reparación y mantenimiento de bicicletas</string>
+    <string name="initial_location">Ubicación inicial</string>
+    <string name="permission_not_granted">Permisos necesarios no concedidos</string>
 </resources>

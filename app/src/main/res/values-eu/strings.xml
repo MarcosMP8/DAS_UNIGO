@@ -73,4 +73,15 @@
     <string name="toast_bus_route_not_found">Ez da aurkitu autobus ibilbiderik</string>
     <string name="label_origin_stop">Jatorrizko geldialdia</string>
     <string name="label_last_stop">Azken geldialdia</string>
+    <string name="gps_off">GPS desaktibatuta dago. Aktibatu eta berriro saiatu.</string>
+    <string name="not_location">Kokapena ez dago eskuragarri</string>
+    <string name="error_route">Errorea ibilbidea kalkulatzeko</string>
+    <string name="distance_total_format">Distantzia guztira:\n%1$.2f km</string>
+    <string name="route_toast">Distantzia: %1$.2f km\nIraupen estimatua: %2$.1f min</string>
+    <string name="error_parkings">Errorea “parkearen seguruak” kargatzerakoan</string>
+    <string name="vgbiziz">VGbiziz: Bizikleten aparkaleku seguruen sarea</string>
+    <string name="parking2">Oroimenezko bizikleten aparkaleku segurua</string>
+    <string name="repair_point">Bizikleten konponketa eta mantentze puntua</string>
+    <string name="initial_location">Hasierako kokapena</string>
+    <string name="permission_not_granted">Beharrezko baimenak ez dira onartu</string>
 </resources>
