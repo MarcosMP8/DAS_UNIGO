@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Mapa a pantalla completa -->
     <org.osmdroid.views.MapView
         android:id="@+id/bici_map"
         android:layout_width="0dp"
@@ -16,26 +15,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Recuadro de distancia -->
     <TextView
         android:id="@+id/dist_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
         android:padding="10dp"
-        android:text="Distancia total: 0 km"
+        android:text=""
         android:textColor="?attr/colorOnSecondary"
         android:background="?attr/colorSurface"
         android:textSize="14sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Botón atrás -->
     <ImageButton
         android:id="@+id/btn_atras"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
@@ -43,5 +42,15 @@
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

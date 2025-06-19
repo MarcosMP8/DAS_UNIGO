@@ -84,4 +84,9 @@
     <string name="repair_point">Bicycle repair and maintenance point</string>
     <string name="initial_location">Initial location</string>
     <string name="permission_not_granted">Required permissions not granted</string>
+    <string name="your_location">Your location</string>
+    <string name="getting_location">Getting location…</string>
+    <string name="bidegorris_araba_title">Araba-Gazteiz Bidegorris</string>
+    <string name="default_secure_parking">Secure parking</string>
+    <string name="address_unknown">Unknown address</string>
 </resources>

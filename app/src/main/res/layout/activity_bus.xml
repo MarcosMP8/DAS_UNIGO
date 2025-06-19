@@ -54,7 +54,7 @@
             android:id="@+id/tv_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/info"
+            android:text="Información"
             android:textSize="16sp"
             android:textColor="?attr/colorOnSecondary"
             android:background="?attr/colorSurface"
@@ -63,7 +63,7 @@
             android:padding="16dp" />
     </androidx.cardview.widget.CardView>
 
-    <!-- PANEL DESPLEGABLE PARADAS -->
+    <!-- PANEL DESPLEGABLE PARADAS CON MÁRGENES -->
     <ScrollView
         android:id="@+id/panel_ruta"
         android:layout_width="250dp"
@@ -92,7 +92,7 @@
                 android:id="@+id/titulo_paradas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/stop"
+                android:text="Paradas"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:paddingBottom="8dp"

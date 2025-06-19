@@ -84,4 +84,9 @@
     <string name="repair_point">Punto de reparación y mantenimiento de bicicletas</string>
     <string name="initial_location">Ubicación inicial</string>
     <string name="permission_not_granted">Permisos necesarios no concedidos</string>
+    <string name="your_location">Tu ubicación</string>
+    <string name="getting_location">Obteniendo ubicación…</string>
+    <string name="bidegorris_araba_title">Bidegorris Araba-Gazteiz</string>
+    <string name="default_secure_parking">Parking seguro</string>
+    <string name="address_unknown">Dirección desconocida</string>
 </resources>

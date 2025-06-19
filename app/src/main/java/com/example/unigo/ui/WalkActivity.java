@@ -1,19 +1,19 @@
 package com.example.unigo.ui;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.location.Location;
-import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
-import android.widget.ImageButton;
-import android.widget.Toast;
-import android.view.View;
-import android.widget.TextView;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.DashPathEffect;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +22,8 @@ import androidx.preference.PreferenceManager;
 
 import com.example.unigo.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
@@ -46,15 +44,13 @@ public class WalkActivity extends AppCompatActivity {
     private static final int REQUEST_LOCATION = 1;
 
     private static final GeoPoint CAMPUS_LOCATION = new GeoPoint(42.839448, -2.670349);
-    private static final float MAX_DIST_METERS = 50_000f;
 
     private MapView map;
     private IMapController mapController;
     private FusedLocationProviderClient locClient;
     private ImageButton btnBack;
     private TextView tvInfo;
-
-    private GeoPoint ubicacionAleatoria;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +64,7 @@ public class WalkActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         tvInfo = findViewById(R.id.tv_info);
         tvInfo.setVisibility(View.GONE);
+        progressBar = findViewById(R.id.progressBar);
 
         if (btnBack != null) {
             btnBack.bringToFront();
@@ -84,9 +81,6 @@ public class WalkActivity extends AppCompatActivity {
         map.setMultiTouchControls(true);
         mapController = map.getController();
         mapController.setZoom(14.5);
-
-        ubicacionAleatoria = generarUbicacionDentroVitoria();
-        mapController.setCenter(ubicacionAleatoria);
 
         locClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -122,18 +116,29 @@ public class WalkActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
+    @SuppressLint("MissingPermission")
     private void setupMap() {
-        // Usamos directamente la ubicación aleatoria simulada
-        GeoPoint start = ubicacionAleatoria;
-        addUserMarker(start);
-        addDestMarker(CAMPUS_LOCATION, "Campus UPV/EHU");
-        drawRoute(start, CAMPUS_LOCATION);
+        progressBar.setVisibility(View.VISIBLE);
+        Toast.makeText(this, getString(R.string.getting_location), Toast.LENGTH_SHORT).show();
+
+        locClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).addOnSuccessListener(this, location -> {
+            if (location != null) {
+                GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+                mapController.setCenter(startPoint);
+                addUserMarker(startPoint);
+                addDestMarker(CAMPUS_LOCATION, getString(R.string.campus));
+                drawRoute(startPoint, CAMPUS_LOCATION);
+            } else {
+                Toast.makeText(this, getString(R.string.not_location), Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void addUserMarker(GeoPoint p) {
         Marker m = new Marker(map);
         m.setPosition(p);
-        m.setTitle("Ubicación simulada");
+        m.setTitle(getString(R.string.your_location));
         m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         map.getOverlays().add(m);
     }
