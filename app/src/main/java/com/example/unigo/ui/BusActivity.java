@@ -217,14 +217,14 @@ public class BusActivity extends AppCompatActivity {
             // Encontrar la parada más cercana que tenga una ruta hacia el campus
             ParadaBus origen = encontrarParadaCercanaConRutaACampus();
             if (origen == null) {
-                runOnUiThread(() -> Toast.makeText(this, "No se encontró una ruta de bus directa al campus desde una parada cercana.", Toast.LENGTH_LONG).show());
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.toast_no_route_to_campus), Toast.LENGTH_LONG).show());
                 return;
             }
 
             int campusId = encontrarStopIdPorGeoPoint(campus);
             List<Integer> stopsRuta = buscarRutaBus(origen.getStopId(), campusId);
             if (stopsRuta == null || stopsRuta.isEmpty()) {
-                runOnUiThread(() -> Toast.makeText(this, "Ruta en bus no encontrada.", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.toast_bus_route_not_found), Toast.LENGTH_SHORT).show());
                 return;
             }
 
@@ -232,8 +232,8 @@ public class BusActivity extends AppCompatActivity {
 
             // Mostrar información y rutas en la UI
             runOnUiThread(() -> {
-                mostrarParada(origen, "Parada origen");
-                mostrarParada(ultima, "Última parada");
+                mostrarParada(origen, getString(R.string.label_origin_stop));
+                mostrarParada(ultima, getString(R.string.label_last_stop));
                 mostrarParadasEnLista(stopsRuta);
             });
 
@@ -258,17 +258,28 @@ public class BusActivity extends AppCompatActivity {
                 tiempos[1] = tiempoBus;
 
                 runOnUiThread(() -> {
-                    tvInfo.setText(String.format(
-                            Locale.getDefault(),
-                            "🟢 A pie hasta '%s': %.2f km (%d min)\n🚌 En bus: %.2f km (%d min)\n🔴 A pie al campus: %.2f km (%d min)",
-                            origen.getStopName(), distancias[0], tiempos[0],
-                            distancias[1], tiempos[1],
-                            distancias[2], tiempos[2]
-                    ));
+                    double d0 = distancias[0], d1 = distancias[1], d2 = distancias[2];
+                    int t0 = tiempos[0], t1 = tiempos[1], t2 = tiempos[2];
+                    int totalTime = t0 + t1 + t2;
+
+                    String info = getString(
+                            R.string.route_info,
+                            origen.getStopName(),
+                            d0, t0,
+                            d1, t1,
+                            d2, t2,
+                            totalTime
+                    );
+                    tvInfo.setText(info);
                     tvInfo.setMaxLines(3);
                     tvInfo.setOnClickListener(v -> {
-                        infoExpandida = !infoExpandida;
-                        tvInfo.setMaxLines(infoExpandida ? Integer.MAX_VALUE : 3);
+                        if (infoExpandida) {
+                            tvInfo.setMaxLines(3);
+                            infoExpandida = false;
+                        } else {
+                            tvInfo.setMaxLines(Integer.MAX_VALUE);
+                            infoExpandida = true;
+                        }
                     });
                     tvInfo.setVisibility(View.VISIBLE);
                 });
